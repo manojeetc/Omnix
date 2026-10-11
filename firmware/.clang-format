@@ -1,0 +1,17 @@
+BasedOnStyle: LLVM
+IndentWidth: 2
+ColumnLimit: 100
+BreakStringLiterals: false
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+SortIncludes: false
+SortUsingDeclarations: false
+FixNamespaceComments: false
+SeparateDefinitionBlocks: Always
+ReflowComments: true
+PointerAlignment: Right
+DerivePointerAlignment: false
