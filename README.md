@@ -15,6 +15,8 @@
 
 Omnix is a 3D-printed, 18-servo hexapod with an animated face. An ESP32 handles walking, calibration and IMU sensing, while a Beetle RP2350 renders the face and live dashboards on a 240 × 320 display.
 
+[Assembly](assembly.md) · [Firmware](firmware/README.md) · [Calibration](calibration.md) · [Troubleshooting](troubleshooting.md)
+
 ## Preview
 
 ![Omnix robot render](misc/render.png)
@@ -47,7 +49,7 @@ See the [bill of materials](misc/BOM.xlsx) for the parts list and [CAD directory
 
 ## Printed parts
 
-The STEP files can be opened in a CAD editor and exported for printing.
+The STEP files can be opened in a CAD editor and exported for printing. The [assembly guide](assembly.md) lists print quantities, suggested orientations, fasteners and the build order.
 
 | Assembly | CAD files |
 | --- | --- |
@@ -105,10 +107,10 @@ The divider junction connects to D34. This drawing labels the resistors 100 kΩ 
 
 ## Getting started
 
-1. Read the [firmware guide](firmware/README.md) for wiring, Arduino board packages, libraries and build settings.
-2. Open and upload the complete sketch for each board. Keep all headers and extra `.ino` tabs in the same sketch folder.
+1. Read the [assembly guide](assembly.md) for printed parts, hardware and the build order. Centre the servos before fitting their horns, as described in the guide.
+2. Use the [firmware guide](firmware/README.md) for Arduino board packages, libraries, wiring and upload settings. Install the ESP32 sketch when needed for servo centering, and the Beetle sketch before the final display check. Keep all headers and extra `.ino` tabs in each sketch folder.
 3. Follow the [calibration steps](calibration.md) to check leg mapping, servo directions, neutral positions, angle scales, battery voltage and IMU mounting. The guide also covers optional sag and foot-height tuning.
-4. Open the ESP32 Serial Monitor at **115200 baud**, send `help`, and start with short movements at a low speed.
+4. After calibration, open the ESP32 Serial Monitor at **115200 baud**, send `help`, and start with short movements at a low speed.
 
 | Board | Current sketch | Arduino settings |
 | --- | --- | --- |
@@ -133,6 +135,7 @@ Gyro auto-zero now tolerates short read gaps while the robot is stopped and sett
 
 | Path | Contents |
 | --- | --- |
+| [assembly.md](assembly.md) | Printed parts, fasteners, servo centering, wiring and mechanical assembly |
 | [calibration.md](calibration.md) | Servo, battery, IMU and optional foot-height calibration steps |
 | [troubleshooting.md](troubleshooting.md) | Fault diagnosis, recovery steps and bug-report details |
 | [firmware/](firmware/) | ESP32 and Beetle sketches, build instructions and command reference |

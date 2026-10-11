@@ -9,6 +9,8 @@ The ESP32 drives the legs and reads the MPU. The Beetle RP2350 renders the face 
 
 Install **Adafruit PWM Servo Driver Library** for the ESP32. Install **Adafruit ST7735 and ST7789 Library** and **Adafruit GFX Library** for the Beetle, including their dependencies.
 
+For printed parts, fasteners and the mechanical build order, follow the [assembly guide](../assembly.md). It explains when to install the ESP32 sketch and use `c90` to centre servos before fitting their horns.
+
 ## Connections
 
 | Connection | Pins / setting |
@@ -45,7 +47,7 @@ For servo holds, MPU errors, jerky motion, resets or display problems, follow th
 | Stance and gait | `gait tripod`, `gait ripple`, `gait wave`, `speed 50`, `height 55`, `width 10`, `lift 25`, `period 1` |
 | Joint calibration | `dir`, `dir FL`, `flip FL f`, `trim FL f 20`, `cal FL f`, `swapsides`, `swapends`, `show` |
 | Calibration persistence | `save` saves the current calibration/settings; `reset` clears them |
-| Direct servo modes | `c` centres all joints; `off` relaxes them |
+| Direct servo modes | `c` centres all joints with trims; `c90` sends raw 1500 µs for horn fitting; `off` relaxes them |
 | Load tuning | `com X Y`, `sagtest`, `sag <mm>`, `lag <ms>`, `servospeed <deg/s>` |
 | MPU and leveling | `tilt`, `motion`, `levelcal`, `mpufront`, `level on`, `level off`, `mpustatus`, `mpu` |
 | Walking assists | `assist`, `assist on`, `assist off`, `assist heading/terrain/landing/balance on/off`, `turn 90`, `turn -45` |

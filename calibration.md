@@ -4,7 +4,7 @@ These steps apply to the [ESP32 v4.0.26 sketch](firmware/esp-v4.0.26/hexapod_wal
 
 Send one command at a time and wait for each movement or measurement to finish. Numeric examples below are examples, so replace measurements with your own values.
 
-For a new build, complete sections 1 through 6 before walking. Section 7 covers optional load and foot-height tuning. For an existing calibrated robot, use `show` first and repeat only the steps affected by your changes.
+For a new build, follow the [assembly guide](assembly.md), including servo centering before fitting horns, then complete sections 1 through 6 here before walking. Section 7 covers optional load and foot-height tuning. For an existing calibrated robot, use `show` first and repeat only the steps affected by your changes.
 
 ## 1. Prepare the robot
 

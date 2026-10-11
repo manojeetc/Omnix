@@ -1,6 +1,6 @@
 # Omnix troubleshooting
 
-This guide covers the ESP32 v4.0.26 and Beetle v3.8 sketches in this repository. Check the [firmware guide](firmware/README.md) for build settings and wiring, and the [calibration guide](calibration.md) for the setup sequence.
+This guide covers the ESP32 v4.0.26 and Beetle v3.8 sketches in this repository. Check the [assembly guide](assembly.md) for mechanical fit and build order, the [firmware guide](firmware/README.md) for build settings and wiring, and the [calibration guide](calibration.md) for the setup sequence.
 
 ## Start here
 
@@ -235,4 +235,4 @@ Use `show`, `params` and `mathdump` to inspect the current configuration before 
 - For display issues, Beetle `info` output, whether `hold` still dims, and whether its boot animation repeats.
 - The complete error/reset text and a clear photo of relevant connections when wiring is involved.
 
-Return to the [project README](README.md), [calibration guide](calibration.md) or [firmware guide](firmware/README.md).
+Return to the [project README](README.md), [assembly guide](assembly.md), [calibration guide](calibration.md) or [firmware guide](firmware/README.md).
