@@ -45,20 +45,20 @@ The current build uses:
 | 2S LiPo, separate 6 V servo UBEC and 5 V electronics buck | Power supplies |
 | Printed body, legs and head | Mechanical structure |
 
-See the [bill of materials](misc/BOM.xlsx) for the parts list and [CAD directory](cad/) for the STEP files. Wiring, pin assignments and the installed LCD's power connection are documented in the [firmware guide](firmware/README.md#connections).
+See the [bill of materials](misc/BOM.xlsx) for the parts list, [STEP sources](cad/step/) for CAD editing and [STL meshes](cad/stl/) for printing. Wiring, pin assignments and the installed LCD's power connection are documented in the [firmware guide](firmware/README.md#connections).
 
 ## Printed parts
 
-The STEP files can be opened in a CAD editor and exported for printing. The [assembly guide](assembly.md) lists print quantities, suggested orientations, fasteners and the build order.
+Use the [STL files](cad/stl/) directly in your slicer, or edit the originals in [cad/step](cad/step/). The STL dimensions are in millimetres; import at 100% scale and choose the print orientation in your slicer. The [assembly guide](assembly.md) lists print quantities, suggested orientations, fasteners and the build order.
 
-| Assembly | CAD files |
+| Assembly | STEP files |
 | --- | --- |
-| Body | [Chassis](cad/chassis_V4.step), [bottom plate](cad/bottom_plate_V4.step), [top deck](cad/top_deck_V3.step) |
-| Legs | [Coxa bracket](cad/coxa_bracket_V5.step), [femur bracket](cad/femur_bracket_V6.step), [tibia](cad/tibia_V5.step), [hip link](cad/hip_inner_link.step), [knee link](cad/knee_inner_link.step) |
-| Feet | [TPU foot cap](cad/foot_cap_TPU.step) |
-| Head | [Hood](cad/head_hood_v2.step), [visor](cad/head_visor_v2.step), [front clip](cad/head_front_clip.step) |
-| Display | [Screen base](cad/screen_base.step), [screen frame](cad/screen_frame_V4.step) |
-| Mounting | [Servo cap](cad/servo_cap.step), [14 mm standoff](cad/standoff_M3x14.step), [25 mm standoff](cad/standoff_M3x25.step) |
+| Body | [Chassis](cad/step/chassis_V4.step), [bottom plate](cad/step/bottom_plate_V4.step), [top deck](cad/step/top_deck_V3.step) |
+| Legs | [Coxa bracket](cad/step/coxa_bracket_V5.step), [femur bracket](cad/step/femur_bracket_V6.step), [tibia](cad/step/tibia_V5.step), [hip link](cad/step/hip_inner_link.step), [knee link](cad/step/knee_inner_link.step) |
+| Feet | [TPU foot cap](cad/step/foot_cap_TPU.step) |
+| Head | [Hood](cad/step/head_hood_v2.step), [visor](cad/step/head_visor_v2.step), [front clip](cad/step/head_front_clip.step) |
+| Display | [Screen base](cad/step/screen_base.step), [screen frame](cad/step/screen_frame_V4.step) |
+| Mounting | [Servo cap](cad/step/servo_cap.step), [14 mm standoff](cad/step/standoff_M3x14.step), [25 mm standoff](cad/step/standoff_M3x25.step) |
 
 ## Wiring diagrams
 
@@ -131,6 +131,20 @@ Full inverse dynamics starts in monitor mode and estimates demand from commanded
 
 Gyro auto-zero now tolerates short read gaps while the robot is stopped and settled. `mpustatus` reports the quiet window and re-zero count. Repeated MPU transfer failures still need investigation; bias correction depends on valid, stable samples.
 
+## Builder's challenges
+
+Getting Omnix working took a lot of testing. One of the hardest parts was figuring out whether a problem came from the code, the wiring or the mechanics, because they could produce very similar symptoms.
+
+The MPU kept dropping out even with its power LED on. I tried spare sensors, another ESP32 and different jumpers. Connecting it directly to the ESP32 restored readings during one test, which helped narrow down the rail and ground connections. Later, intermittent read errors also made calibration unreliable and delayed the control loop. Getting a tilt reading was only the start; I needed it to stay reliable while the robot moved.
+
+Adding the Beetle and screen made power wiring more confusing. I disconnected the Beetle's VCC wire, but the screen still showed its waiting animation. The Beetle was also connected to the shared 3.3 V rail, so removing VCC had not actually removed its power. That led me to separate the boards' 3.3 V connections while keeping a common ground.
+
+The screen's dim pulses looked like an animation or rendering bug. I tried display settings and checked whether the two cores were struggling. Even a frozen picture still dimmed, though. Moving the installed display's power input to regulated 5 V fixed it, without changing the animations.
+
+Smooth walking brought a different set of problems. After adding the printed head, I noticed jerky movement and had to consider the extra weight, calibration, servo response and software timing together. MPU retries and loop delays showed up in the diagnostics, so changing a foot path alone would not explain every pause. Calibrating 18 joints also meant keeping track of directions, horn positions, trims and angle scales. Switching ESP32 boards brought another concern: those saved settings belong to the board, not the sketch files.
+
+I also tried running a neural motion-estimation model onboard. It could run, but inference took roughly a second and sometimes fell behind the incoming data, so I shelved that experiment. The cloud work became more useful for deriving and checking general equations that could then run locally on the ESP32. Simulation helped explore loads and movement, but estimated masses, friction and servo behaviour still needed checking against the real robot.
+
 ## Repository layout
 
 | Path | Contents |
@@ -139,7 +153,7 @@ Gyro auto-zero now tolerates short read gaps while the robot is stopped and sett
 | [calibration.md](calibration.md) | Servo, battery, IMU and optional foot-height calibration steps |
 | [troubleshooting.md](troubleshooting.md) | Fault diagnosis, recovery steps and bug-report details |
 | [firmware/](firmware/) | ESP32 and Beetle sketches, build instructions and command reference |
-| [cad/](cad/) | Mechanical STEP files |
+| [cad/](cad/) | STEP sources in `step/` and matching print meshes in `stl/` |
 | [misc/](misc/) | Bill of materials and robot render |
 | [logos/](logos/) | Light and dark logo assets |
 | [wiring-diagrams/](wiring-diagrams/) | Wiring illustrations shown above |

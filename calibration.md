@@ -39,7 +39,7 @@ Leg names are relative to the robot's selected front. Left and right are the rob
 
 Joint names are `c` for coxa, `f` for femur and `t` for tibia.
 
-Send `c` and wait for the `Centred` message. It centers all joints using the existing trims. Match the links to the [CAD](cad/) calibration pose. In the firmware's nominal zero geometry, the femur joint-center line is horizontal and the tibia points down at a right angle to it; the coxa follows that leg's outward CAD direction. Use the joint centers as references rather than the edges of a printed bracket.
+Send `c` and wait for the `Centred` message. It centers all joints using the existing trims. Match the links to the [CAD](cad/step/) calibration pose. In the firmware's nominal zero geometry, the femur joint-center line is horizontal and the tibia points down at a right angle to it; the coxa follows that leg's outward CAD direction. Use the joint centers as references rather than the edges of a printed bracket.
 
 If you need to check or reseat servo horns, `c90` sends exactly **1500 microseconds** to every servo, ignoring trims. Turn servo power off before removing or reseating a horn. Place it as close to the neutral geometry as the spline allows, restore power, and use `c` for the remaining calibration.
 

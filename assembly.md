@@ -12,29 +12,29 @@ This guide takes Omnix from printed parts to a robot ready for calibration. Read
 
 ## 1. Print the parts
 
-All files are in [`cad/`](cad/). PLA is fine for everything except the foot caps.
+Print meshes are in [cad/stl](cad/stl/), with editable originals in [cad/step](cad/step/). The table links both formats for each part. PLA is fine for everything except the foot caps.
 
-| Part | Qty | Notes |
-|---|---|---|
-| `chassis_V4.step` | 1 | flat, either face down |
-| `top_deck_V3.step` | 1 | flat face down, no supports |
-| `bottom_plate_V4.step` | 1 | top face down, battery rails up, no supports |
-| `coxa_bracket_V5.step` | 6 | |
-| `femur_bracket_V6.step` | 6 | |
-| `tibia_V5.step` | 6 | |
-| `hip_inner_link.step` | 6 | |
-| `knee_inner_link.step` | 6 | |
-| `servo_cap.step` | 12 | one on each femur and knee servo |
-| `foot_cap_TPU.step` | 6 | **TPU** |
-| `standoff_M3x25.step` | 4 | chassis to top deck |
-| `standoff_M3x14.step` | 4 | chassis to bottom plate |
-| `screen_base.step` | 1 | on its side as exported, no supports |
-| `screen_frame_V4.step` | 1 | face down as exported, no supports |
-| `head_hood_v2.step` | 1 | skirt down, tree supports **inside only** (under the roof, the sloped face and the ESP32 rails) |
-| `head_front_clip.step` | 1 | on its side, no supports, 100 % infill (PETG if you have it) |
-| `head_visor_v2.step` | 1 | optional orange accent, print flat, glue around the window |
+| Part (STEP) | STL | Qty | Notes |
+|---|---|---|---|
+| [chassis_V4.step](cad/step/chassis_V4.step) | [STL](cad/stl/chassis_V4.stl) | 1 | flat, either face down |
+| [top_deck_V3.step](cad/step/top_deck_V3.step) | [STL](cad/stl/top_deck_V3.stl) | 1 | flat face down, no supports |
+| [bottom_plate_V4.step](cad/step/bottom_plate_V4.step) | [STL](cad/stl/bottom_plate_V4.stl) | 1 | top face down, battery rails up, no supports |
+| [coxa_bracket_V5.step](cad/step/coxa_bracket_V5.step) | [STL](cad/stl/coxa_bracket_V5.stl) | 6 | |
+| [femur_bracket_V6.step](cad/step/femur_bracket_V6.step) | [STL](cad/stl/femur_bracket_V6.stl) | 6 | |
+| [tibia_V5.step](cad/step/tibia_V5.step) | [STL](cad/stl/tibia_V5.stl) | 6 | |
+| [hip_inner_link.step](cad/step/hip_inner_link.step) | [STL](cad/stl/hip_inner_link.stl) | 6 | |
+| [knee_inner_link.step](cad/step/knee_inner_link.step) | [STL](cad/stl/knee_inner_link.stl) | 6 | |
+| [servo_cap.step](cad/step/servo_cap.step) | [STL](cad/stl/servo_cap.stl) | 12 | one on each femur and knee servo |
+| [foot_cap_TPU.step](cad/step/foot_cap_TPU.step) | [STL](cad/stl/foot_cap_TPU.stl) | 6 | **TPU** |
+| [standoff_M3x25.step](cad/step/standoff_M3x25.step) | [STL](cad/stl/standoff_M3x25.stl) | 4 | chassis to top deck |
+| [standoff_M3x14.step](cad/step/standoff_M3x14.step) | [STL](cad/stl/standoff_M3x14.stl) | 4 | chassis to bottom plate |
+| [screen_base.step](cad/step/screen_base.step) | [STL](cad/stl/screen_base.stl) | 1 | on its side as exported, no supports |
+| [screen_frame_V4.step](cad/step/screen_frame_V4.step) | [STL](cad/stl/screen_frame_V4.stl) | 1 | face down as exported, no supports |
+| [head_hood_v2.step](cad/step/head_hood_v2.step) | [STL](cad/stl/head_hood_v2.stl) | 1 | skirt down, tree supports **inside only** (under the roof, the sloped face and the ESP32 rails) |
+| [head_front_clip.step](cad/step/head_front_clip.step) | [STL](cad/stl/head_front_clip.stl) | 1 | on its side, no supports, 100 % infill (PETG if you have it) |
+| [head_visor_v2.step](cad/step/head_visor_v2.step) | [STL](cad/stl/head_visor_v2.stl) | 1 | optional orange accent, print flat, glue around the window |
 
-Suggested settings: 0.2 mm layers, 3 to 4 walls, 15 to 30 % infill (30 % and 4 walls for the screen stand). The printed standoffs have 2.6 mm holes so M3 screws self-tap into both ends. Export the STEP files to STL or 3MF at their original size in millimetres, and check the orientation and supports in your slicer before printing.
+Suggested settings: 0.2 mm layers, 3 to 4 walls, 15 to 30 % infill (30 % and 4 walls for the screen stand). The printed standoffs have 2.6 mm holes so M3 screws self-tap into both ends. The supplied STL files preserve the original dimensions in millimetres. Import at 100% scale and check the orientation and supports in your slicer before printing.
 
 ## 2. Gather the parts
 
