@@ -2,9 +2,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="logos/logo.png">
-    <source media="(prefers-color-scheme: dark)" srcset="logos/logo-white.png">
-    <img alt="Omnix" src="logos/logo.png" width="420">
+    <source media="(prefers-color-scheme: light)" srcset="imgs/logo.png">
+    <source media="(prefers-color-scheme: dark)" srcset="imgs/logo-white.png">
+    <img alt="Omnix" src="imgs/logo.png" width="420">
   </picture>
 </p>
 
@@ -15,11 +15,16 @@
 
 Omnix is a 3D-printed, 18-servo hexapod with an animated face. An ESP32 handles walking, calibration and IMU sensing, while a Beetle RP2350 renders the face and live dashboards on a 240 × 320 display.
 
-[Assembly](assembly.md) · [Firmware](firmware/README.md) · [Calibration](calibration.md) · [Troubleshooting](troubleshooting.md)
+## Jump to
+
+- [Assembly](assembly.md) — Print parts, wire components and build the robot.
+- [Firmware](firmware/README.md) — Set up, upload and control both boards.
+- [Calibration](calibration.md) — Tune servos, battery readings and the IMU.
+- [Troubleshooting](troubleshooting.md) — Diagnose problems and recover normal operation.
 
 ## Preview
 
-![Omnix robot render](misc/render.png)
+![Omnix robot render](imgs/render.png)
 
 ## What it does
 
@@ -71,37 +76,37 @@ The diagrams below illustrate the separate electronics supply, servo supply, I2C
 
 The 2S battery feeds a 5 V buck, which supplies ESP32 VIN and Beetle VCC. The servo supply uses its own UBEC.
 
-![Battery, buck converter and ESP32 power](wiring-diagrams/esp-power-wiring.png)
+![Battery, buck converter and ESP32 power](imgs/wiring/esp-power-wiring.png)
 
 ### Servo power
 
 Connect both PCA boards' servo-power terminals to the 6 V UBEC output; this drawing shows only one board connected. Keep a shared ground with the electronics.
 
-![Battery, UBEC and PCA servo power](wiring-diagrams/pca-power-wiring.png)
+![Battery, UBEC and PCA servo power](imgs/wiring/pca-power-wiring.png)
 
 ### PCA logic and I2C
 
 Both PCA boards share ESP32 SDA D27 and SCL D14. Use addresses `0x40` for the left board and `0x60` for the right. Connect their logic VCC to 3V3 and their GND to ESP32 GND; the drawing omits that last ground connection.
 
-![PCA boards and ESP32 I2C connections](wiring-diagrams/pca-esp-wiring.png)
+![PCA boards and ESP32 I2C connections](imgs/wiring/pca-esp-wiring.png)
 
 ### IMU
 
 The IMU uses ESP32 SDA D21, SCL D22, 3V3 and GND, on a separate bus from the PCA boards.
 
-![GY-521 IMU and ESP32 connections](wiring-diagrams/mpu-wiring.png)
+![GY-521 IMU and ESP32 connections](imgs/wiring/mpu-wiring.png)
 
 ### Display and Beetle
 
 ESP32 D17/TX2 connects to Beetle pin 1/RX. The drawing shows LCD VCC connected to ESP32 3V3; the installed 3.3 V–5 V compatible LCD now uses **regulated 5 V** to resolve dimming. Its SPI signals remain at 3.3 V. Feed Beetle VCC from 5 V and leave Beetle 3V3 separate from the ESP32 3V3 rail. Follow the firmware guide's USB power-isolation instructions when programming either board.
 
-![Beetle, ESP32 and ST7789 display connections](wiring-diagrams/screen-wiring.png)
+![Beetle, ESP32 and ST7789 display connections](imgs/wiring/screen-wiring.png)
 
 ### Battery monitor
 
 The divider junction connects to D34. This drawing labels the resistors 100 kΩ and 47 kΩ; the current firmware guide specifies 10 kΩ and 4.7 kΩ, with the same divider ratio. Use the guide's values and `batcal` with a measured battery voltage.
 
-![Battery voltage divider and ESP32 D34](wiring-diagrams/battery-monitor-wiring.png)
+![Battery voltage divider and ESP32 D34](imgs/wiring/battery-monitor-wiring.png)
 
 </details>
 

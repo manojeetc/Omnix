@@ -133,7 +133,7 @@ With servo power disconnected, check joint clearance and cable routing gently. D
 
 Wire with the battery **unplugged** and USB cables disconnected. The diagrams are in [`wiring-diagrams/`](wiring-diagrams/), and the [firmware guide](firmware/README.md#connections) has the full pin table. Where a drawing differs from this list, follow this list (it matches the installed build).
 
-### Power ([`esp-power-wiring.png`](wiring-diagrams/esp-power-wiring.png), [`pca-power-wiring.png`](wiring-diagrams/pca-power-wiring.png))
+### Power ([`esp-power-wiring.png`](imgs/wiring/esp-power-wiring.png), [`pca-power-wiring.png`](imgs/wiring/pca-power-wiring.png))
 
 - Battery + → inline fuse → **rocker switch** → UBEC input and buck input. Battery − → UBEC and buck GND.
 - **UBEC 6 V → V+ screw terminal on BOTH PCA9685 boards** (and their GND).
@@ -144,7 +144,7 @@ Wire with the battery **unplugged** and USB cables disconnected. The diagrams ar
 - Run servo power and its return through suitable wires to the PCA screw terminals, rather than through the breadboard rail. The breadboard is for electronics and signal connections.
 - When programming the ESP32 over USB, disconnect its external VIN feed or remove the build's USB/power isolation jumper J1. When programming the Beetle over USB-C, disconnect its external VCC feed.
 
-### PCA9685 to ESP32 ([`pca-esp-wiring.png`](wiring-diagrams/pca-esp-wiring.png))
+### PCA9685 to ESP32 ([`pca-esp-wiring.png`](imgs/wiring/pca-esp-wiring.png))
 
 | PCA pin | ESP32 |
 |---|---|
@@ -168,7 +168,7 @@ Wire with the battery **unplugged** and USB cables disconnected. The diagrams ar
 
 This is the default mapping, before `swapsides` or `swapends`. Confirm it with `show` and `dir` during calibration. Brown / black servo wire goes to the pin marked GND; follow the board's labels rather than assuming every board has the same connector orientation.
 
-### IMU ([`mpu-wiring.png`](wiring-diagrams/mpu-wiring.png))
+### IMU ([`mpu-wiring.png`](imgs/wiring/mpu-wiring.png))
 
 | MPU pin | ESP32 |
 |---|---|
@@ -179,7 +179,7 @@ This is the default mapping, before `swapsides` or `swapends`. Confirm it with `
 
 Leave INT, XDA and XCL unconnected. A GY-521 with AD0 held low uses address 0x68; AD0 high selects 0x69. The firmware probes both addresses and also tries reversed SDA / SCL pins at startup if the normal connection fails. Wire it according to the table. Mount the MPU securely and flat on the body so it cannot move relative to the robot; its axes are set during calibration.
 
-### Display and Beetle ([`screen-wiring.png`](wiring-diagrams/screen-wiring.png))
+### Display and Beetle ([`screen-wiring.png`](imgs/wiring/screen-wiring.png))
 
 | Display pin | Connects to |
 |---|---|
@@ -201,7 +201,7 @@ The installed display stopped dimming when its power input was moved to regulate
 
 Keep the Beetle's 3V3 separate from the ESP32's 3V3. **Unplug the Beetle's VCC wire whenever its USB-C cable is plugged in.** Grounds stay shared during normal operation.
 
-### Battery monitor ([`battery-monitor-wiring.png`](wiring-diagrams/battery-monitor-wiring.png))
+### Battery monitor ([`battery-monitor-wiring.png`](imgs/wiring/battery-monitor-wiring.png))
 
 Switched battery + → **10 kΩ** → **D34** → **4.7 kΩ** → GND. This scales a full 2S pack (8.4 V) down to about 2.7 V. Tap it after the switch so it doesn't drain the battery when the robot is off. Never connect the battery straight to D34. Fine-tune the reading with `batcal` during calibration.
 
